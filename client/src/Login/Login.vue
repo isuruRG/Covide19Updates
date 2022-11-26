@@ -38,12 +38,12 @@
                             />
 
                             <div class="text-danger" v-if="res_errors.password">
-                                <h6>{{ res_errors.password[0] }}</h6>
+<!--                                <h6>{{ res_errors.password[0] }}</h6>-->
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="text-danger" v-if="res_errors">
-                                <h6>{{ res_errors.user_name }}</h6>
+<!--                                <h6>{{ res_errors.user_name }}</h6>-->
                             </div>
                         </div>
                         <button
@@ -61,40 +61,51 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import store from "../store/index";
-
+import axios from 'axios'
 export default {
+    name: "HelpAndGuides",
     data() {
         return {
             email: "",
-            password: ""
+            password: "",
+            res_errors:{}
         };
     },
 
     mounted() {},
 
     computed: {
-        ...mapGetters({
-            res_errors: "login_errors"
-        })
+
     },
 
     methods: {
-        ...mapActions({
-            signIn: "signIn"
-        }),
 
-        submit() {
-            let save_data = {
-                email: this.email,
-                password: this.password
-            };
-            this.signIn(save_data).then(() => {
-                if (!store.getters.login_errors) {
-                    this.$router.push({ path: "/dashBoard" });
+        async submit() {
+
+           await axios.post("api/auth/login" , {
+                    email: this.email,
+                    password: this.password
+                }).then(response => {
+                    if (response.data && !response.data.errors) {
+                        console.log(response.data.data)
+                        localStorage.setItem("SET_TOKEN", JSON.stringify(response.data.token));
+                        this.user(response.data.token)
+                        this.$router.push({ path: "/" });
+                    }
+                });
+        },
+        async user(token) {
+
+           await axios.get("api/auth/user" ,{
+                headers: {
+                    'Authorization': 'Bearer ' + token
                 }
-            });
+            }).then(response => {
+               console.log(response.data)
+                    if (response.data && !response.data.errors) {
+                        localStorage.setItem("SET_USER", JSON.stringify(response.data.user));
+                    }
+                });
         }
     }
 };

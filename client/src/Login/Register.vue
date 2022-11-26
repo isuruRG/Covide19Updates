@@ -89,6 +89,7 @@
 import axios from 'axios'
 
 export default {
+    name: "HelpAndGuides",
     data() {
         return {
             username: "",
@@ -102,13 +103,12 @@ export default {
 
     methods: {
         submit() {
-            let save_data = {
+            axios.post("api/auth/register", {
                 name: this.username,
                 email: this.email,
                 password: this.password,
                 confirm_password: this.confirm_password
-            };
-            axios.post("api/auth/register", save_data).then(response => {
+            }).then(response => {
                 if (response.data.data) {
                     if (!response.data.data.errors) {
                         this.$router.push({ path: "login" });

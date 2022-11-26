@@ -4,6 +4,7 @@
 
 <script>
 export default {
+    name: "HelpAndGuides",
     data() {
         return {
             isLoggedIn: false

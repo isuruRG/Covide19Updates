@@ -7,7 +7,7 @@
             >
                 <ul class="navbar-nav">
                     <template>
-                        <h5 class="nav-link text-primary" v-if="authenticated">hello {{user.name}}</h5>
+                        <h5 class="nav-link text-primary">hello {{user.name}}</h5>
                         <li
                             class="nav-item"
                             v-if="this.$route.name != 'dashBoard'"
@@ -29,7 +29,7 @@
                             </router-link>
                         </li>
 
-                        <li class="nav-item" v-if="authenticated">
+                        <li class="nav-item">
                             <a
                                 href="#"
                                 class="nav-link text-info"
@@ -37,7 +37,7 @@
                             >Logout</a>
                         </li>
                     </template>
-                    <template v-if="!authenticated">
+                    <template>
                         <li class="nav-item active">
                             <router-link class="nav-link text-info" to="/login">Login</router-link>
                         </li>
@@ -52,29 +52,24 @@
 </template>
 
 <script>
-    import {mapGetters, mapActions} from "vuex";
-
     export default {
+        name: "HelpAndGuides",
         data() {
-            return {};
+            return {
+                authenticated:''
+            };
         },
         computed: {
-            ...mapGetters({
-                authenticated: "authenticated",
-                user: "user"
-            })
+
         },
 
         methods: {
-            ...mapActions({
-                signOutAction: "signOut"
-            }),
             signOut() {
-                this.signOutAction().then(() => {
-                    this.$router.replace({
-                        name: "Login"
-                    });
-                });
+            //     this.signOutAction().then(() => {
+            //         this.$router.replace({
+            //             name: "Login"
+            //         });
+            //     });
             }
         }
     };
