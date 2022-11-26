@@ -96,7 +96,7 @@ export default {
             email: "",
             password: "",
             confirm_password: "",
-            res_errors: []
+            res_errors: {}
         };
     },
     mounted() {},
@@ -109,9 +109,10 @@ export default {
                 password: this.password,
                 confirm_password: this.confirm_password
             }).then(response => {
-                if (response.data.data) {
-                    if (!response.data.data.errors) {
-                        this.$router.push({ path: "login" });
+                if (response.data) {
+                    if (response.data.user) {
+                        alert()
+                        this.$router.push({ path: "/login" });
                     } else {
                         this.res_errors = response.data.data.errors.validations;
                     }

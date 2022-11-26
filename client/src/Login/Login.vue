@@ -38,12 +38,12 @@
                             />
 
                             <div class="text-danger" v-if="res_errors.password">
-<!--                                <h6>{{ res_errors.password[0] }}</h6>-->
+                                <h6>{{ res_errors.password[0] }}</h6>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="text-danger" v-if="res_errors">
-<!--                                <h6>{{ res_errors.user_name }}</h6>-->
+                                <h6>{{ res_errors.user_name }}</h6>
                             </div>
                         </div>
                         <button
@@ -86,11 +86,15 @@ export default {
                     email: this.email,
                     password: this.password
                 }).then(response => {
-                    if (response.data && !response.data.errors) {
-                        console.log(response.data.data)
-                        localStorage.setItem("SET_TOKEN", JSON.stringify(response.data.token));
-                        this.user(response.data.token)
-                        this.$router.push({ path: "/" });
+
+                    if (response.data.data&& response.data.data.errors){
+                        this.res_errors = response.data.data.errors.validations;
+                    }else {
+                        if (response.data && !response.data.errors) {
+                            localStorage.setItem("SET_TOKEN", JSON.stringify(response.data.token));
+                            this.user(response.data.token)
+                            this.$router.push({path: "/"});
+                        }
                     }
                 });
         },
