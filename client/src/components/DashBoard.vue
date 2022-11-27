@@ -1,7 +1,7 @@
 <template>
     <div class="col-lg-12 dashboard-body container">
         <h4 class="main-heading">
-            <strong>{{ "Local Covid19 Live Updates" }}</strong>
+            <strong>{{ "Covid19 Status Live Updates" }}</strong>
         </h4>
 
         <div>
