@@ -4,8 +4,8 @@
             <div class="container post rounded p-4">
                 <div class="header-section">
                     <div class="topic">
-                        <strong>{{ helpAndGuide.user.name }}</strong>
-                        <small class="ml-2 text-info" style="color: #1a202c"> {{ helpAndGuide.created_at | moment("MMMM Do YYYY")}}</small>
+                        <strong>{{ helpAndGuide.user.name }}</strong><br>
+                        Publish Date : <small class="ml-2" style="text-align: end; color: #718096 "> {{ helpAndGuide.created_at | moment("MMMM Do YYYY")}}</small>
                     </div>
                 </div>
 
@@ -23,7 +23,6 @@
     export default {
         data() {
             return {
-                react: '',
             }
         },
         props: {

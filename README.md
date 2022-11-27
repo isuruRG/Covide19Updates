@@ -17,7 +17,9 @@ create new database and update .env
 
 ### Backend Setup ####
 ```
-run composer install
+===== Run this commands =======
+
+composer install
 php artisan key:generate
 php artisan jwt:secret
 php artisan migrate
@@ -27,7 +29,7 @@ php artisan serve
 ### FrontEnd Setup ###
 ```
 Open another terminal in project root path
-cd into frontend/
+cd into client/
 npm i
 npm run serve
 ```
@@ -36,9 +38,11 @@ npm run serve
 ```
 open new terminal
 
-run crontab -e
+===== Run this commands =======
+
+crontab -e
 select preferred editor (nano or vim)
-assume that you have chosen nano
+If you have chosen nano editer follow the steps
 
 copy and paste below line after updating the path-to-project
 
@@ -53,9 +57,7 @@ Done!
 
 ### Notice ####
 ```
-Browse http://localhost:8080 (assume npm run serve running at http://localhost:8080/)
-
-Note: assume php artisan serve running at http://localhost:8000
+Note: If php artisan serve running at http://localhost:8000
 Otherwise you have to update 
 below line in client/src/main.js
 axios.defaults.baseURL = 'http://127.0.0.1:8000/'

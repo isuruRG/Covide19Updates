@@ -8,7 +8,7 @@
                 >
                     <ul class="navbar-nav">
                         <template>
-                            <h5 class="nav-link text-primary" v-if="user">
+                            <h5 class="nav-link"  style="color: #e2e8f0" v-if="user">
                                 Hi {{ user.name }}
                             </h5>
                             <li
@@ -16,8 +16,9 @@
                                 v-if="this.$route.name != 'dashBoard'"
                             >
                                 <router-link
-                                    class="nav-link text-info"
+                                    class="nav-link"
                                     :to="{ path: '/' }"
+                                    style="color: #e2e8f0"
                                 >Dashboard
                                 </router-link>
                             </li>
@@ -27,8 +28,9 @@
                                 v-if="this.$route.name != 'help-and-guides'"
                             >
                                 <router-link
-                                    class="nav-link text-info"
+                                    class="nav-link"
                                     :to="{ path: '/help-and-guides' }"
+                                    style="color: #e2e8f0"
                                 >Help & Guide
                                 </router-link>
                             </li>
@@ -36,7 +38,8 @@
                             <li class="nav-item" v-if="user">
                                 <a
                                     href="#"
-                                    class="nav-link text-info"
+                                    class="nav-link"
+                                    style="color: #e2e8f0"
                                     @click.prevent="signOut"
                                 >Logout</a
                                 >
@@ -45,15 +48,17 @@
                         <template v-if="!user">
                             <li class="nav-item active">
                                 <router-link
-                                    class="nav-link text-info"
+                                    class="nav-link"
                                     to="/login"
+                                    style="color: #e2e8f0"
                                 >Login</router-link
                                 >
                             </li>
                             <li class="nav-item active">
                                 <router-link
-                                    class="nav-link text-info"
+                                    class="nav-link"
                                     to="/register"
+                                    style="color: #e2e8f0"
                                 >Register</router-link
                                 >
                             </li>
