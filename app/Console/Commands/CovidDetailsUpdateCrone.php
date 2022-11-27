@@ -39,7 +39,10 @@ class CovidDetailsUpdateCrone extends Command
             ],
         ]);
         $covidData = json_decode($result->getBody()->getContents(), true);
-
+        $this->_updateCovidDetails($covidData);
+    }
+    // add covid details to table from cron
+    private function _updateCovidDetails($covidData){
         $published_at = \Carbon\Carbon::now();
         DB::table('COVID_DETAILS_TB')->insert(
             [

@@ -4,7 +4,7 @@ namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class CheckIsBothPasswordMatch implements Rule
+class CheckIsEnterdPasswordMatch implements Rule
 {
     /**
      * Create a new rule instance.
@@ -32,7 +32,7 @@ class CheckIsBothPasswordMatch implements Rule
         }else{
             return true;
         }
-        
+
     }
 
     /**

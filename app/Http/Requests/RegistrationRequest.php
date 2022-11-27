@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\CheckIsBothPasswordMatch;
+use App\Rules\CheckIsEnterdPasswordMatch;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegistrationRequest extends FormRequest
@@ -28,7 +28,7 @@ class RegistrationRequest extends FormRequest
             'name' => ['required', 'string'],
             'email' => ['required', 'string', 'unique:users','email'],
             'password' => ['required', 'string', 'min:6','max:10'],
-            'confirm_password' => ['required', 'string', 'min:6','max:10', new CheckIsBothPasswordMatch]
+            'confirm_password' => ['required', 'string', 'min:6','max:10', new CheckIsEnterdPasswordMatch]
         ];
 
         return $rules;

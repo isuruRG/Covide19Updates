@@ -1,7 +1,7 @@
 <template>
     <div class="row help-and-guides">
         <div class="row">
-            <strong style="margin-bottom: 10px; text-align: center"> Help Guides</strong>
+            <strong style="margin-bottom: 10px; text-align: center; font-size: 30px"> Help & Guides</strong>
         </div>
         <div class="col-lg-12 container" v-if="helpAndGuides.length>0">
             <div v-for="helpAndGuide in helpAndGuides" :key="helpAndGuide.id">

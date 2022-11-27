@@ -7,12 +7,13 @@ use App\Models\HelpAndGuide;
 
 class HelpAndGuideController extends Controller
 {
+    // get details from Help And Guidetable
     public function getHelpAndGuide()
     {
         $posts = HelpAndGuide::all();
         return response()->json($posts);
     }
-
+// store details to table
     public function createHelpAndGuideC(UpdateHelpAndGuidesRequest $request)
     {
         $post_data = [];
