@@ -29,17 +29,12 @@
             helpAndGuide,
         },
         mounted() {
-            let token = localStorage.getItem('SET_TOKEN')
-            this.getAllHelpAndGuides(token);
+            this.getAllHelpAndGuides();
         },
 
         methods: {
-            getAllHelpAndGuides(token) {
-                axios.get("/api/help-and-guide/get-all-help-and-guides",{
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                }).then(response => {
+            getAllHelpAndGuides() {
+                axios.get("/api/help-and-guide/get-all-help-and-guides").then(response => {
                     if (response.data) {
                         this.helpAndGuides = response.data;
                     }

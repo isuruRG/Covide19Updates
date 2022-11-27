@@ -4,28 +4,31 @@
             <div class="login-main-text">
                 <h2>
                     Covid19<br />
-                    Updates
+                    Live Updates
                 </h2>
                 <p>Register from here</p>
             </div>
         </div>
         <div class="main">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-8 col-sm-12">
                 <div class="login-form">
                     <form>
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="username"
-                                placeholder="User Name"
-                                v-model="username"
-                            />
+                        <div class="row-cols-1">
+                            <div class="form-group">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="username"
+                                    placeholder="User Name"
+                                    v-model="username"
+                                />
 
-                            <div class="text-danger" v-if="res_errors.name">
-                                <h6>{{ res_errors.name[0] }}</h6>
+                                <div class="text-danger" v-if="res_errors.name">
+                                    <h6>{{ res_errors.name[0] }}</h6>
+                                </div>
                             </div>
                         </div>
+
 
                         <div class="form-group">
                             <input
@@ -111,7 +114,6 @@ export default {
             }).then(response => {
                 if (response.data) {
                     if (response.data.user) {
-                        alert()
                         this.$router.push({ path: "/login" });
                     } else {
                         this.res_errors = response.data.data.errors.validations;
@@ -135,7 +137,7 @@ body {
 
 .sidenav {
     height: 100%;
-    background-color: #000;
+    /*background-color: #041f55;*/
     overflow-x: hidden;
     padding-top: 20px;
     margin-top: 56px;
@@ -186,7 +188,7 @@ body {
 .login-main-text {
     margin-top: 20%;
     padding: 60px;
-    color: #fff;
+    color: #000000;
 }
 
 .login-main-text h2 {
@@ -195,6 +197,6 @@ body {
 
 .btn-black {
     background-color: #000 !important;
-    color: #fff;
+    color: #ffffff;
 }
 </style>

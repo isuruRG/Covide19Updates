@@ -7,15 +7,15 @@
         <div>
             <liveUpdate :localUpdates="localUpdates" />
         </div>
-        <div v-if="authenticated">
-<!--            <addNewHelpAndGuide />-->
+        <div v-if="user">
+            <addNewHelpAndGuide :user="user"/>
         </div>
     </div>
 </template>
 
 <script>
     import liveUpdate from "./partials/_liveUpdate.vue";
-    // import addNewHelpAndGuide from "./AddNewHelpAndGuid.vue";
+    import addNewHelpAndGuide from "./AddNewHelpAndGuid.vue";
     import axios from 'axios'
 
     export default {
@@ -23,7 +23,7 @@
             return {
                 helpAndGuides: [],
                 localUpdates: {},
-                authenticated:'a'
+                user:null
             };
         },
 
@@ -33,35 +33,26 @@
 
         components: {
             liveUpdate,
-            // addNewHelpAndGuide,
+            addNewHelpAndGuide,
         },
 
         mounted() {
-            let token = localStorage.getItem('SET_TOKEN')
-            console.log(token);
-            this.getAllHelpAndGuides(token);
-            this.getLiveUpdateOfLocalCovid(token);
+            this.user = localStorage.getItem('SET_USER')
+            this.getAllHelpAndGuides();
+            this.getLiveUpdateOfLocalCovid();
         },
 
         methods: {
-            getAllHelpAndGuides(token) {
-                axios.get("/api/help-and-guide/get-all-help-and-guides",{
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                }).then(response => {
+            getAllHelpAndGuides() {
+                axios.get("/api/help-and-guide/get-all-help-and-guides").then(response => {
                     if (response.data) {
                         this.helpAndGuides = response.data;
                     }
                 });
             },
 
-            getLiveUpdateOfLocalCovid(token) {
-                axios.get("/api/covid/get-covid-updates",{
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
-                }).then(response => {
+            getLiveUpdateOfLocalCovid() {
+                axios.get("/api/covid/get-covid-updates").then(response => {
                     if (response.data) {
                         this.localUpdates = response.data;
                     }

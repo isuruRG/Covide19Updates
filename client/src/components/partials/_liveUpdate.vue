@@ -3,7 +3,7 @@
         <div class="container live-update">
             <div class="detail-wrapper">
                 <div class="detail-name">Last Update</div>
-                <div class="detail-value"> {{ localUpdates.update_date_time | defaultDateFormat }}</div>
+                <div class="detail-value"> {{ localUpdates.update_date_time }}</div>
             </div>
 
             <div class="detail-wrapper">

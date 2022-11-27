@@ -11,9 +11,9 @@ export default {
         };
     },
     mounted() {
-        localStorage.removeItem("token");
-        this.$router.push({ name: "Login" });
-        location.reload();
+        // localStorage.removeItem("token");
+        // this.$router.push({ name: "Login" });
+        // location.reload();
     }
 };
 </script>

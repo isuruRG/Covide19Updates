@@ -58,22 +58,21 @@
             return {
                 description: "",
                 link: "",
-                user: 2,
                 res_errors: {},
                 success:false
             };
         },
-
+        props: {
+            user: {
+                type: Object
+            },
+        },
         methods: {
             submit() {
-                let token = localStorage.getItem('SET_TOKEN')
                 axios.post("/api/help-and-guide/create-help-and-guid", {
-                    user_id: this.user,
+                    user_id: this.user.id,
                     link: this.link,
                     description: this.description,
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
                 }).then(response => {
                     if (response.data.data && response.data.data.errors) {
                         this.res_errors = response.data.data.errors.validations;

@@ -4,13 +4,13 @@
             <div class="login-main-text">
                 <h2>
                     Covid19<br />
-                    Updates
+                    Live Updates
                 </h2>
                 <p>Login here</p>
             </div>
         </div>
         <div class="main">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-8 col-sm-12">
                 <div class="login-form">
                     <form>
                         <div class="form-group">
@@ -72,7 +72,8 @@ export default {
         };
     },
 
-    mounted() {},
+    mounted() {
+    },
 
     computed: {
 
@@ -82,34 +83,33 @@ export default {
 
         async submit() {
 
-           await axios.post("api/auth/login" , {
-                    email: this.email,
-                    password: this.password
-                }).then(response => {
+            await axios.post("api/auth/login" , {
+                email: this.email,
+                password: this.password
+            }).then(response => {
 
-                    if (response.data.data&& response.data.data.errors){
-                        this.res_errors = response.data.data.errors.validations;
-                    }else {
-                        if (response.data && !response.data.errors) {
-                            localStorage.setItem("SET_TOKEN", JSON.stringify(response.data.token));
-                            this.user(response.data.token)
-                            this.$router.push({path: "/"});
-                        }
+                if (response.data.data&& response.data.data.errors){
+                    this.res_errors = response.data.data.errors.validations;
+                }else {
+                    if (response.data && !response.data.errors) {
+                        localStorage.setItem("SET_TOKEN", JSON.stringify(response.data.token));
+                        this.user(response.data.token)
+                        this.$router.push({path: "/"});
                     }
-                });
+                }
+            });
         },
         async user(token) {
 
-           await axios.get("api/auth/user" ,{
+            await axios.get("api/auth/user" ,{
                 headers: {
                     'Authorization': 'Bearer ' + token
                 }
             }).then(response => {
-               console.log(response.data)
-                    if (response.data && !response.data.errors) {
-                        localStorage.setItem("SET_USER", JSON.stringify(response.data.user));
-                    }
-                });
+                if (response.data && !response.data.errors) {
+                    localStorage.setItem("SET_USER", JSON.stringify(response.data.user));
+                }
+            });
         }
     }
 };
@@ -127,7 +127,7 @@ body {
 
 .sidenav {
     height: 100%;
-    background-color: #000;
+    /*background-color: #5f5c5c;*/
     overflow-x: hidden;
     padding-top: 20px;
     margin-top: 56px;
@@ -178,7 +178,7 @@ body {
 .login-main-text {
     margin-top: 20%;
     padding: 60px;
-    color: #fff;
+    color: #020202;
 }
 
 .login-main-text h2 {
