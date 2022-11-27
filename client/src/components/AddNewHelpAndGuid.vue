@@ -75,7 +75,14 @@
                     description: this.description,
                 }).then(response => {
                     if (response.data.data && response.data.data.errors) {
-                        this.res_errors = response.data.data.errors.validations;
+                        if (response.data.data.errors.validations.token){
+                            localStorage.removeItem("SET_TOKEN");
+                            localStorage.removeItem("SET_USER");
+                            location.reload();
+                            this.$router.push({path: "/"});
+                        }else {
+                            this.res_errors = response.data.data.errors.validations;
+                        }
                     } else {
                         this.success = true;
                         this.link = '';

@@ -17,22 +17,21 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('register', [\App\Http\Controllers\AuthController::class, 'register']);
     Route::post('login', [\App\Http\Controllers\AuthController::class,'login']);
     Route::get('logout', [\App\Http\Controllers\AuthController::class,'logout']);
-
-    //Route::get('open', 'CovidDetailsController@open');
-
     Route::group(['middleware' => ['jwt.verify']], function() {
         Route::get('user', [\App\Http\Controllers\AuthController::class,'getAuthenticatedUser']);
-        //    Route::get('closed', 'CovidDetailsController@closed');
     });
 });
 
-Route::group([], function () {
-    Route::group(['prefix' => 'covid'], function () {
-        Route::get('get-covid-updates', [\App\Http\Controllers\CovidDetailsController::class, 'getCovidDetails']);
-    });
+Route::group(['prefix' => 'covid'], function () {
+    Route::get('get-covid-updates', [\App\Http\Controllers\CovidDetailsController::class, 'getCovidDetails']);
+});
+Route::group(['prefix' => 'help-and-guide'], function () {
+    Route::get('get-all-help-and-guides', [\App\Http\Controllers\HelpAndGuideController::class, 'getHelpAndGuide']);
+});
+
+Route::group(['middleware' => ['jwt.verify']], function () {
     Route::group(['prefix' => 'help-and-guide'], function () {
         Route::post('create-help-and-guid', [\App\Http\Controllers\HelpAndGuideController::class, 'createHelpAndGuideC']);
-        Route::get('get-all-help-and-guides', [\App\Http\Controllers\HelpAndGuideController::class, 'getHelpAndGuide']);
     });
 });
 

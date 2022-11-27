@@ -5,17 +5,17 @@
         </h4>
 
         <div>
-            <liveUpdate :localUpdates="localUpdates" />
+            <CovidUpdateDetails :localUpdates="localUpdates" />
         </div>
         <div v-if="user">
-            <addNewHelpAndGuide :user="user"/>
+            <AddNewHelpAndGuide :user="user"/>
         </div>
     </div>
 </template>
 
 <script>
-    import liveUpdate from "./partials/CovidliveUpdateSubComponents.vue";
-    import addNewHelpAndGuide from "./AddNewHelpAndGuid.vue";
+    import CovidUpdateDetails from "./subComponents/CovidliveUpdateSubComponents.vue";
+    import AddNewHelpAndGuide from "./AddNewHelpAndGuid.vue";
     import axios from 'axios'
 
     export default {
@@ -32,8 +32,8 @@
         },
 
         components: {
-            liveUpdate,
-            addNewHelpAndGuide,
+            CovidUpdateDetails,
+            AddNewHelpAndGuide,
         },
 
         mounted() {
