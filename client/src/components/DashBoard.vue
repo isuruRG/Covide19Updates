@@ -1,5 +1,5 @@
 <template>
-    <div class="col-lg-12 dashboard-body">
+    <div class="col-lg-12 dashboard-body container">
         <h4 class="main-heading">
             <strong>{{ "Local Covid19 Live Updates" }}</strong>
         </h4>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-    import liveUpdate from "./partials/_liveUpdate.vue";
+    import liveUpdate from "./partials/CovidliveUpdateSubComponents.vue";
     import addNewHelpAndGuide from "./AddNewHelpAndGuid.vue";
     import axios from 'axios'
 
@@ -37,7 +37,7 @@
         },
 
         mounted() {
-            this.user = localStorage.getItem('SET_USER')
+            this.user = JSON.parse(localStorage.getItem('SET_USER'));
             this.getAllHelpAndGuides();
             this.getLiveUpdateOfLocalCovid();
         },

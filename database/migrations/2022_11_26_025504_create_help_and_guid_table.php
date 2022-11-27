@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('HELP_AND_GUIDE_TB', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned()->index();
-            $table->string('link',50)->nullable();
+            $table->string('link')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

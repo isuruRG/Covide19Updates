@@ -1,88 +1,76 @@
 <template>
-    <div class="container">
-        <div class="sidenav">
-            <div class="login-main-text">
-                <h2>
-                    Covid19<br />
-                    Live Updates
-                </h2>
-                <p>Register from here</p>
-            </div>
-        </div>
-        <div class="main">
-            <div class="col-md-8 col-sm-12">
-                <div class="login-form">
-                    <form>
-                        <div class="row-cols-1">
-                            <div class="form-group">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="username"
-                                    placeholder="User Name"
-                                    v-model="username"
-                                />
+    <div class="back">
+        <div class="div-center">
+            <div class="content">
+                <h3>Login</h3>
+                <hr/>
+                <form>
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            placeholder="User Name"
+                            v-model="username"
+                        />
 
-                                <div class="text-danger" v-if="res_errors.name">
-                                    <h6>{{ res_errors.name[0] }}</h6>
-                                </div>
-                            </div>
+                        <div class="text-danger" v-if="res_errors.name">
+                            <h6>{{ res_errors.name[0] }}</h6>
                         </div>
+                    </div>
 
+                    <div class="form-group">
+                        <input
+                            type="email"
+                            class="form-control mt-2"
+                            id="email"
+                            placeholder="Email"
+                            v-model="email"
+                        />
 
-                        <div class="form-group">
-                            <input
-                                type="email"
-                                class="form-control"
-                                id="email"
-                                placeholder="Email"
-                                v-model="email"
-                            />
-
-                            <div class="text-danger" v-if="res_errors.email">
-                                <h6>{{ res_errors.email[0] }}</h6>
-                            </div>
+                        <div class="text-danger" v-if="res_errors.email">
+                            <h6>{{ res_errors.email[0] }}</h6>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="password"
-                                placeholder="Password"
-                                v-model="password"
-                            />
+                    <div class="form-group">
+                        <input
+                            type="password"
+                            class="form-control mt-2"
+                            id="password"
+                            placeholder="Password"
+                            v-model="password"
+                        />
 
-                            <div class="text-danger" v-if="res_errors.password">
-                                <h6>{{ res_errors.password[0] }}</h6>
-                            </div>
+                        <div class="text-danger" v-if="res_errors.password">
+                            <h6>{{ res_errors.password[0] }}</h6>
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="password2"
-                                placeholder="Confirm Password"
-                                v-model="confirm_password"
-                            />
+                    <div class="form-group">
+                        <input
+                            type="password"
+                            class="form-control mt-2"
+                            id="password2"
+                            placeholder="Confirm Password"
+                            v-model="confirm_password"
+                        />
 
-                            <div
-                                class="text-danger"
-                                v-if="res_errors.confirm_password"
-                            >
-                                <h6>{{ res_errors.confirm_password[0] }}</h6>
-                            </div>
-                        </div>
-                        <button
-                            type="submit"
-                            class="btn btn-black"
-                            @click.prevent="submit()"
+                        <div
+                            class="text-danger"
+                            v-if="res_errors.confirm_password"
                         >
-                            Register
-                        </button>
-                    </form>
-                </div>
+                            <h6>{{ res_errors.confirm_password[0] }}</h6>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mt-2" @click.prevent="submit()">Register</button>
+                    <hr/>
+                    <button type="button" class="btn btn-link" @click.prevent="signIn()">SignIn</button>
+                    <button type="button" class="btn btn-link" @click.prevent="reset()">Reset</button>
+                    <button type="button" class="btn btn-link" @click.prevent="backToDashboard()">Back To Dashboard</button>
+
+                </form>
             </div>
         </div>
     </div>
@@ -102,7 +90,8 @@ export default {
             res_errors: {}
         };
     },
-    mounted() {},
+    mounted() {
+    },
 
     methods: {
         submit() {
@@ -114,89 +103,60 @@ export default {
             }).then(response => {
                 if (response.data) {
                     if (response.data.user) {
-                        this.$router.push({ path: "/login" });
+                        alert()
+                        this.$router.push({path: "/login"});
                     } else {
                         this.res_errors = response.data.data.errors.validations;
                     }
                 }
             });
-        }
+        },
+
+        signIn() {
+            this.$router.push({path: "/login"});
+        },
+
+        reset() {
+            this.email = "";
+            this.password = "";
+            this.res_errors = {}
+        },
+        backToDashboard() {
+            this.$router.push({path: "/"});
+        },
     }
 };
 </script>
 
 <style scoped>
-body {
-    font-family: "Lato", sans-serif;
+.back {
+    background: #e2e2e2;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
 }
 
-.main-head {
-    height: 150px;
-    background: #fff;
+.div-center {
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    padding: 1em 2em;
+    border-bottom: 2px solid #ccc;
+    display: table;
 }
 
-.sidenav {
-    height: 100%;
-    /*background-color: #041f55;*/
-    overflow-x: hidden;
-    padding-top: 20px;
-    margin-top: 56px;
-}
-
-.main {
-    padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
-    }
-}
-
-@media screen and (max-width: 450px) {
-    .login-form {
-        margin-top: 10%;
-    }
-
-    .register-form {
-        margin-top: 10%;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .main {
-        margin-left: 40%;
-    }
-
-    .sidenav {
-        width: 40%;
-        position: fixed;
-        z-index: 1;
-        top: 0;
-        left: 0;
-    }
-
-    .login-form {
-        margin-top: 80%;
-    }
-
-    .register-form {
-        margin-top: 20%;
-    }
-}
-
-.login-main-text {
-    margin-top: 20%;
-    padding: 60px;
-    color: #000000;
-}
-
-.login-main-text h2 {
-    font-weight: 300;
-}
-
-.btn-black {
-    background-color: #000 !important;
-    color: #ffffff;
+div.content {
+    display: table-cell;
+    vertical-align: middle;
 }
 </style>

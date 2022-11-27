@@ -4,7 +4,7 @@
             <div class="header-section">
                 <div class="topic">
                     <strong>{{ helpAndGuide.user.name }}</strong>
-                    <small class="ml-2 text-info"> updated {{ helpAndGuide.created_at | customDateFormat }}</small>
+                    <small class="ml-2 text-info"> {{ helpAndGuide.created_at}}</small>
                 </div>
             </div>
 

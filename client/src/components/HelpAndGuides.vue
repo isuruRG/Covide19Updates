@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import helpAndGuide from "./partials/_helpAndGuid";
+    import helpAndGuide from "./partials/helpAndGuidSubComponents";
     import axios from 'axios'
 
 

@@ -9,7 +9,7 @@
                     <ul class="navbar-nav">
                         <template>
                             <h5 class="nav-link text-primary" v-if="user">
-                                hello {{ user.name }}
+                                Hi {{ user.name }}
                             </h5>
                             <li
                                 class="nav-item"

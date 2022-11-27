@@ -15,13 +15,30 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        $token = \Tymon\JWTAuth\Facades\JWTAuth::attempt($credentials);
+
+        try {
+            if (! $token = \Tymon\JWTAuth\Facades\JWTAuth::attempt($credentials)) {
+                $error['data']['errors']['validations']['email'] = ['invalid Credentials'];
+                return response()->json($error, 200);
+            }
+        } catch (JWTException $e) {
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
 
         return response()->json(compact('token'));
     }
 
     public function register(RegistrationRequest $request)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 200);
+        }
+
         $user = \App\Models\User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),

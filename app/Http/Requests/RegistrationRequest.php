@@ -26,7 +26,7 @@ class RegistrationRequest extends FormRequest
     {
         $rules = [
             'name' => ['required', 'string'],
-            'email' => ['required', 'string', 'unique:users'],
+            'email' => ['required', 'string', 'unique:users','email'],
             'password' => ['required', 'string', 'min:6','max:10'],
             'confirm_password' => ['required', 'string', 'min:6','max:10', new CheckIsBothPasswordMatch]
         ];

@@ -19,7 +19,6 @@ class HelpAndGuideController extends Controller
         $post_data['user_id'] = $request->get('user_id');
         $post_data['link'] = $request->get('link');
         $post_data['description'] = $request->get('description');
-//        dd($post_data);
         $save = HelpAndGuide::create($post_data);
         return response()->json($save, 200);
     }

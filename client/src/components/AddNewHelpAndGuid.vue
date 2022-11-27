@@ -64,7 +64,7 @@
         },
         props: {
             user: {
-                type: Object
+                type: [Object,String]
             },
         },
         methods: {
