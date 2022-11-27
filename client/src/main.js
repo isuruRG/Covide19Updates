@@ -6,6 +6,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(require('vue-moment'));
 import axios from 'axios';
 Vue.config.productionTip = false
 axios.defaults.baseURL = 'http://127.0.0.1:8000/'

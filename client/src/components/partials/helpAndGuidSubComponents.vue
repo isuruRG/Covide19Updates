@@ -4,7 +4,7 @@
             <div class="header-section">
                 <div class="topic">
                     <strong>{{ helpAndGuide.user.name }}</strong>
-                    <small class="ml-2 text-info"> {{ helpAndGuide.created_at}}</small>
+                    <small class="ml-2 text-info"> {{ helpAndGuide.created_at | moment("MMMM Do YYYY")}}</small>
                 </div>
             </div>
 

@@ -13,7 +13,7 @@
             </thead>
             <tbody>
             <tr>
-                <td>{{ localUpdates.update_date_time }}</td>
+                <td>{{ localUpdates.update_date_time | moment("MMMM Do YYYY")}}</td>
                 <td>{{ localUpdates.local_new_cases }}</td>
                 <td>{{ localUpdates.local_total_cases }}</td>
                 <td>{{ localUpdates.local_total_number_of_individuals_in_hospitals }}</td>

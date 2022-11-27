@@ -87,7 +87,7 @@ export default {
                 localStorage.removeItem("SET_TOKEN");
                 localStorage.removeItem("SET_USER");
                 location.reload();
-                this.$router.replace({name: "Login"});
+                this.$router.push({path: "/"});
             });
         },
     },

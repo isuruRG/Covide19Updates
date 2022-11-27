@@ -103,7 +103,6 @@ export default {
             }).then(response => {
                 if (response.data) {
                     if (response.data.user) {
-                        alert()
                         this.$router.push({path: "/login"});
                     } else {
                         this.res_errors = response.data.data.errors.validations;

@@ -95,6 +95,7 @@ export default {
             }).then(response => {
                 console.log(response.data)
                 if (response.data && !response.data.errors) {
+                    location.reload();
                     localStorage.setItem("SET_USER", JSON.stringify(response.data.user));
                 }
             });
